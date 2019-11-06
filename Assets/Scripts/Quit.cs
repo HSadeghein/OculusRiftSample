@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Oculus;
+
 public class Quit : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -13,8 +14,9 @@ public class Quit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         OVRInput.Update();
-        if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch))
+        if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch) || Input.GetKey(KeyCode.Escape))
         {
             #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;

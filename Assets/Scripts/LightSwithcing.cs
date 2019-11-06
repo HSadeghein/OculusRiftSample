@@ -16,7 +16,7 @@ public class LightSwithcing : MonoBehaviour
     void Update()
     {
         OVRInput.Update();
-        if(OVRInput.GetDown(OVRInput.Button.One,OVRInput.Controller.RTouch))
+        if(OVRInput.GetDown(OVRInput.Button.One,OVRInput.Controller.RTouch) || Input.GetKeyDown(KeyCode.A))
         {
             mLight.color = new Color(1.0f, 0.0f, 0.0f);
         }
