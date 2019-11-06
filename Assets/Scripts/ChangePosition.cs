@@ -14,6 +14,8 @@ public class ChangePosition : MonoBehaviour
     {
         mInitialPosition = GetComponent<Transform>().transform.position;
         mDstPosition = mDstObject.transform.position;
+        QualitySettings.vSyncCount = 0;
+        //Application.targetFrameRate = 144;
     }
 
     // Update is called once per frame
@@ -26,9 +28,8 @@ public class ChangePosition : MonoBehaviour
         if (mChangePos)
         {
             transform.position = Vector3.Lerp(transform.position, mDstPosition, Time.deltaTime * mSpeed);
-            Debug.Log("MAG==>" + Mathf.Abs(mDstPosition.magnitude - transform.position.magnitude));
-            Debug.Log("dst ==>" + mDstPosition);
-            if (Mathf.Abs(mDstPosition.magnitude - transform.position.magnitude) < 0.3f)
+            Vector3 s = mDstPosition - transform.position;
+            if (s.magnitude <= 0.3f)
             {
                 Debug.Log("destination found");
                 Vector3 tmp = mDstPosition;
