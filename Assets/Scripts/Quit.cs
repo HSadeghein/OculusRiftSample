@@ -16,7 +16,10 @@ public class Quit : MonoBehaviour
     {
         
         OVRInput.Update();
-        if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch) || Input.GetKey(KeyCode.Escape))
+        Debug.Log(OVRInput.IsControllerConnected(OVRInput.Controller.RTouch));
+        Debug.Log(OVRInput.IsControllerConnected(OVRInput.Controller.LTouch));
+
+        if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.LTouch) || Input.GetKey(KeyCode.Escape))
         {
             #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;
