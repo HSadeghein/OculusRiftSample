@@ -19,7 +19,7 @@ public class EnteredZone : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        mLight.color = new Color(1.0f, 0.0f, 0.0f);
+        mLight.color = Color.yellow;
 
     }
 

@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class ChangePosition : MonoBehaviour
 {
 
     private Vector3 mInitialPosition, mDstPosition;
     private bool mChangePos = false;
-    public float mSpeed = 1;
+    public float mAutoMovementSpeed = 1;
     public GameObject mDstObject;
+    public float mSpeed = 2.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,13 +23,13 @@ public class ChangePosition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.X))
+        if(Input.GetKeyDown(KeyCode.X) || OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.LTouch))
         {
             mChangePos = true;
         }
         if (mChangePos)
         {
-            transform.position = Vector3.Lerp(transform.position, mDstPosition, Time.deltaTime * mSpeed);
+            transform.position = Vector3.Lerp(transform.position, mDstPosition, Time.deltaTime * mAutoMovementSpeed);
             Vector3 s = mDstPosition - transform.position;
             if (s.magnitude <= 0.3f)
             {
@@ -38,5 +40,11 @@ public class ChangePosition : MonoBehaviour
                 mChangePos = false;
             }
         }
+
+        Vector3 movement = InputTracking.GetLocalRotation(XRNode.CenterEye) * new Vector3(OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick).x, 0, OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick).y) * Time.deltaTime * mSpeed;
+        movement.y = 0;
+        transform.position += movement;
+
+
     }
 }
