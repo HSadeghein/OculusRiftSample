@@ -14,12 +14,7 @@ public class Quit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        OVRInput.Update();
-        Debug.Log(OVRInput.IsControllerConnected(OVRInput.Controller.RTouch));
-        Debug.Log(OVRInput.IsControllerConnected(OVRInput.Controller.LTouch));
-
-        if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.LTouch) || Input.GetKey(KeyCode.Escape))
+        if (OVRInput.GetDown(OVRInput.Button.Two, OVRInput.Controller.LTouch) || Input.GetKey(KeyCode.Escape))
         {
             #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;
@@ -31,6 +26,5 @@ public class Quit : MonoBehaviour
 
     void FixedUpdate()
     {
-        OVRInput.FixedUpdate();
     }
 }

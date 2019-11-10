@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.XR;
 using UnityEngine.XR;
 
 public class ChangePosition : MonoBehaviour
@@ -14,7 +15,7 @@ public class ChangePosition : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mInitialPosition = GetComponent<Transform>().transform.position;
+        mInitialPosition = transform.position;
         mDstPosition = mDstObject.transform.position;
         QualitySettings.vSyncCount = 0;
         //Application.targetFrameRate = 144;
@@ -29,7 +30,10 @@ public class ChangePosition : MonoBehaviour
         }
         if (mChangePos)
         {
-            transform.position = Vector3.Lerp(transform.position, mDstPosition, Time.deltaTime * mAutoMovementSpeed);
+            Debug.Log("Befor" + transform.position);
+
+            transform.position =  Vector3.Lerp(transform.position, mDstPosition, Time.deltaTime * mAutoMovementSpeed) ;
+            Debug.Log("After" + transform.position);
             Vector3 s = mDstPosition - transform.position;
             if (s.magnitude <= 0.3f)
             {
@@ -41,10 +45,11 @@ public class ChangePosition : MonoBehaviour
             }
         }
 
-        Vector3 movement = InputTracking.GetLocalRotation(XRNode.CenterEye) * new Vector3(OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick).x, 0, OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick).y) * Time.deltaTime * mSpeed;
+        Vector3 movement = InputTracking.GetLocalRotation(XRNode.HardwareTracker) * new Vector3(OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick).x, 0, OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick).y) * Time.deltaTime * mSpeed;
         movement.y = 0;
         transform.position += movement;
 
 
     }
+
 }

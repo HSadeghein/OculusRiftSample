@@ -30,16 +30,16 @@ Material:
     m_Floats:
     - _Curveture: 183.91
     - _FlatMargin: 0.62
-    - _Glossiness: 0.765
-    - _Height: 4.35
+    - _Glossiness: 0
+    - _Height: 3.26
     - _HeightFactor: -0.09
     - _HeightStart: -0.41
-    - _Metallic: 0.108
+    - _Metallic: 0
     - _Noise: 0.8
     - _SwingAmplitude: 2
     - _SwingSpeed: 1
     m_Colors:
     - _Color: {r: 0.9534954, g: 1, b: 0.023584902, a: 1}
     - _FarhadWorldPos: {r: 0, g: 0, b: 0, a: 0}
-    - _GroundColor: {r: 0, g: 1, b: 0, a: 1}
+    - _GroundColor: {r: 0.13394445, g: 0.8113208, b: 0.5593686, a: 1}
     - _GroundWorldPos: {r: 0, g: 0, b: 0, a: 0}
