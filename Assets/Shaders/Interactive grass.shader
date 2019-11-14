@@ -105,9 +105,7 @@ Shader "Farhad/Interactive grass" {
 
 		struct Input {
 			float2 uv_MainTex;
-			float3 worldPos;
-			float3 worldNormal;
-
+			float3 localPos;
 		};
 		sampler2D _MainTex;
 		float4 _ObjectsWorldPosition[SIZE];
@@ -190,7 +188,11 @@ Shader "Farhad/Interactive grass" {
 		// 	// put more per-instance properties here
 		// UNITY_INSTANCING_BUFFER_END(Props)
 
-		void vertex(inout  appdata_full v){
+		void vertex(inout  appdata_full v, out Input o){
+			UNITY_INITIALIZE_OUTPUT(Input, o);
+
+			o.localPos = v.vertex;
+			o.uv_MainTex = v.texcoord.xy;
 			float4 worldPos = mul(unity_ObjectToWorld, v.vertex);
 			float4 Foliage = vertexDataFunc(worldPos );
 			// v.vertex = mul(unity_WorldToObject, worldPos);
@@ -199,14 +201,13 @@ Shader "Farhad/Interactive grass" {
 			for(int i = 0; i < SIZE; i++){
 				v.vertex = Scale(v.vertex, _ObjectsWorldPosition[i]);
 			}
-			float4 ase_screenPos = ComputeScreenPos( UnityObjectToClipPos( v.vertex ) );
 
 			// v.vertex +=  rand(v.vertex.xzy) * Foliage;
 			// worldPos.y += 2;
 		}
 
 		void surf (Input IN, inout SurfaceOutput  o) {
-			float3 ase_worldPos = IN.worldPos;
+			// float3 ase_worldPos = IN.worldPos;
 
 			// Albedo comes from a texture tinted by color
 			fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
@@ -218,7 +219,7 @@ Shader "Farhad/Interactive grass" {
 			//float4 appendResult4 = (float4(( ase_worldPos.x * 0.1 ) , ( ase_worldPos.z * 0.1 ) , ase_worldPos.y - _GroundWorldPos.y, 0.0));
 			//float temp_output_38_0 = saturate( ( tex2D( _NoiseTex, IN.uv_MainTex ).r * saturate( ( ( 1.0 / max( 0.01 , _Height ) ) * ( _Height - appendResult4.z ) ) ) ) );
 			//float4 final = lerp(c, _GroundColor, temp_output_38_0);
-			float4 final = lerp(_Color * 10,_GroundColor, 1 - pow(IN.uv_MainTex.y,_Height));
+			float4 final = lerp(_Color ,_GroundColor,1 - pow(IN.localPos.z,_Height));
 			o.Albedo = final.rgb;
 		}
 		ENDCG

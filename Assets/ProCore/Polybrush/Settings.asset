@@ -14,15 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_bool_keys:
   - z_pref_lockBrushToFirst
-  - prefab_hitSurfaceIsParent
   m_int_keys:
   - z_GIWorkflowMode
-  - prefab_previewThumbSize
   m_float_keys: []
   m_string_keys: []
   m_Color_keys: []
-  m_bool_values: 0000
-  m_int_values: 0100000051000000
+  m_bool_values: 01
+  m_int_values: 01000000
   m_float_values: []
   m_string_values: []
   m_Color_values: []

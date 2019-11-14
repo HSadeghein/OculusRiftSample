@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Farhad_Interactive grass
+  m_Name: Grass
   m_Shader: {fileID: 4800000, guid: 1cdf2af21332df64d8bd82294c1d50dd, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -31,7 +31,7 @@ Material:
     - _Curveture: 183.91
     - _FlatMargin: 0.62
     - _Glossiness: 0
-    - _Height: 3.26
+    - _Height: 1
     - _HeightFactor: -0.09
     - _HeightStart: -0.41
     - _Metallic: 0

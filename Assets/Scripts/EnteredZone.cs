@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnteredZone : MonoBehaviour
 {
-    public Light mLight;
+    public Text mText;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +19,7 @@ public class EnteredZone : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-
-        mLight.color = Color.yellow;
+        GameObject.Find("/Canvas/Text").GetComponent<TextController>().mZoneEntered = true;
 
     }
 
