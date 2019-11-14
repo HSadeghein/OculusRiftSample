@@ -27,10 +27,11 @@ public class ChangePosition : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.X) || OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.LTouch))
         {
             mChangePos = true;
+            GetComponent<OVRPlayerController>().enabled = !mChangePos;
         }
         if (mChangePos)
         {
-            Debug.Log("Befor" + transform.position);
+            Debug.Log("Before" + transform.position);
 
             transform.position =  Vector3.Lerp(transform.position, mDstPosition, Time.deltaTime * mAutoMovementSpeed) ;
             Debug.Log("After" + transform.position);
@@ -42,12 +43,10 @@ public class ChangePosition : MonoBehaviour
                 mDstPosition = mInitialPosition;
                 mInitialPosition = tmp;
                 mChangePos = false;
+                GetComponent<OVRPlayerController>().enabled = !mChangePos;
+
             }
         }
-
-        Vector3 movement = InputTracking.GetLocalRotation(XRNode.HardwareTracker) * new Vector3(OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick).x, 0, OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick).y) * Time.deltaTime * mSpeed;
-        movement.y = 0;
-        transform.position += movement;
 
 
     }

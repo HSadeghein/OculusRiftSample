@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class EnteredZone : MonoBehaviour
 {
     public Text mText;
+    public GameObject mSphere;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +21,7 @@ public class EnteredZone : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         GameObject.Find("/Canvas/Text").GetComponent<TextController>().mZoneEntered = true;
-
+        mSphere.GetComponent<Rigidbody>().useGravity = true;
     }
 
 

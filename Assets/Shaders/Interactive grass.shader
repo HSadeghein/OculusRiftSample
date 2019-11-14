@@ -1,7 +1,7 @@
 ﻿
 
 
-Shader "Farhad/Interactive grass" {
+Shader "HW1/Interactive grass" {
 	Properties {
 		_Color ("Color", Color) = (1,1,1,1)
 		_GroundColor ("Ground Color", Color) = (1,1,1,1)
