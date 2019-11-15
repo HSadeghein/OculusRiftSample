@@ -15,7 +15,7 @@
     }
     SubShader
     {
-        Tags { "RenderType"="Transparent" "IgnoreProjector" = "True" "Queue"="Transparent" "DisableBathing" = "True"}
+        Tags { "RenderType"="Transparent"  "Queue"="Transparent" "DisableBathing" = "True"}
         LOD 100
         Blend Srcalpha OneMinusSrcAlpha
         Cull Back
